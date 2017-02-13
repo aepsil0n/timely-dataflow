@@ -38,8 +38,7 @@ impl<T, D, P: Push<(T, Content<D>)>> Buffer<T, D, P> where T: Eq+Clone {
         if let Some(true) = self.time.as_ref().map(|x| *x != cap.time()) { self.flush(); }
         self.time = Some(cap.time());
         AutoflushSession {
-            buffer: self,
-            capability: cap,
+            buffer: self
         }
     }
 
@@ -130,8 +129,6 @@ pub struct AutoflushSession<'a, T: Timestamp, D, P: Push<(T, Content<D>)>+'a> wh
     T: Eq+Clone+'a, D: 'a {
     /// A reference to the underlying buffer.
     buffer: &'a mut Buffer<T, D, P>,
-    /// The capability being used to send the data.
-    capability: Capability<T>,
 }
 
 impl<'a, T: Timestamp, D, P: Push<(T, Content<D>)>+'a> AutoflushSession<'a, T, D, P> where T: Eq+Clone+'a, D: 'a {

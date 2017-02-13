@@ -13,11 +13,11 @@ use ::progress::timestamp::RootTimestamp;
 use ::progress::nested::product::Product;
 
 use dataflow::scopes::root::Root;
-use dataflow::Scope;
 use dataflow::operators::capture::{EventWriter, Event, EventPusher};
 
 use abomonation::Abomonation;
 
+#[allow(non_upper_case_globals)]
 static mut precise_time_ns_delta: Option<i64> = None;
 
 /// Returns the value of an high resolution performance counter, in nanoseconds, rebased to be
